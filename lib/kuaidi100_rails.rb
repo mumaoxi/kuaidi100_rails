@@ -15,8 +15,9 @@ module Kuaidi100Rails
   def crawl(com, nu)
     begin
       url = URI.parse(API_URL)
-      params = {:com => com, :nu => nu, :id => Kuaidi100Rails.API_KEY, :show => 0, :muti => 1, :order => 'desc'}
+      params = {:id => Kuaidi100Rails.API_KEY, :com => com, :nu => nu, :show => 0, :muti => 1, :order => 'desc'}
       url.query = URI.encode_www_form(params)
+      p url
       res = Net::HTTP.get(url)
       hash = SHash.new(JSON.parse(res))
       p hash

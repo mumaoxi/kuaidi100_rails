@@ -61,10 +61,11 @@ module Kuaidi100Rails
 
       hash = SHash.new(JSON.parse(response.body))
       p hash
-
+      return hash[:returnCode].to_i
     rescue Exception => e
       puts "error #{e}"
     end
+    0
   end
 
   class SHash < Hash

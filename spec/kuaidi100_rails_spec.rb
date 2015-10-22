@@ -23,4 +23,11 @@ describe Kuaidi100Rails do
     p Kuaidi100Rails.company_code('韵达')
     p Kuaidi100Rails.company_code('顺丰')
   end
+
+  it 'company name' do
+    p Kuaidi100Rails.company_name('shentong')
+    p Kuaidi100Rails.company_name('ems')
+    p Kuaidi100Rails.company_name('yuantong')
+    p Kuaidi100Rails.company_name(:jd)
+  end
 end

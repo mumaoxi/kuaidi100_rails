@@ -56,6 +56,11 @@ module Kuaidi100Rails
     EXPRESS_KEYWORDS.select { |k, v| cn_name.to_s.downcase.include?(v.to_s.downcase) }.keys[0].to_s
   end
 
+  #en_code to cn_name
+  def company_name(code_str)
+    EXPRESS_KEYWORDS[code_str.to_s.to_sym]
+  end
+
   #subscribe express
   #===Parameters==
   #+com+ company code

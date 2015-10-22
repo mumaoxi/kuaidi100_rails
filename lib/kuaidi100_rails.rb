@@ -1,3 +1,4 @@
+# encoding: utf-8
 require "kuaidi100_rails/version"
 require 'open-uri'
 require 'net/http'
@@ -7,6 +8,26 @@ require 'faraday'
 module Kuaidi100Rails
   API_URL = 'http://api.kuaidi100.com/api'
   SUBSCRIBE_URL = 'http://www.kuaidi100.com/poll'
+  EXPRESS_KEYWORDS = {yuantong: '圆通',
+                      shunfeng: '顺丰',
+                      bjemstckj: '北京EMS',
+                      ems: 'ems',
+                      shentong: '申通',
+                      yunda: '韵达',
+                      zhongtong: '中通',
+                      huitongkuaidi: '汇通',
+                      debangwuliu: '德邦',
+                      zhaijisong: '宅急送',
+                      tiantian: '天天',
+                      guotongkuaidi: '国通',
+                      zengyisudi: '增益',
+                      suer: '速尔',
+                      ztky: '中铁物流',
+                      zhongtiewuliu: '中铁快运',
+                      ganzhongnengda: '能达',
+                      youshuwuliu: '优速',
+                      quanfengkuaidi: '全峰',
+                      jd: '京东'}
 
   class << self
     attr_accessor :API_KEY
@@ -28,6 +49,11 @@ module Kuaidi100Rails
     rescue Exception => e
       puts "error #{e}"
     end
+  end
+
+  #cn_name to en_code
+  def company_code(cn_name)
+    EXPRESS_KEYWORDS.select { |k, v| cn_name.to_s.downcase.include?(v.to_s.downcase) }.keys[0].to_s
   end
 
   #subscribe express
@@ -54,9 +80,13 @@ module Kuaidi100Rails
       p body
 
       response = Faraday.new(:url => SUBSCRIBE_URL).post do |req|
-        req.headers['Content-Type'] = 'application/json'
-        req.params[:schema] = 'json'
-        req.params[:param] = body.to_json
+        req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+        # req.params[:schema] = 'json'
+        # req.params[:param] = body.to_json
+        req.body={
+            schema: 'json',
+            param: body.to_json
+        }
       end
 
       hash = SHash.new(JSON.parse(response.body))

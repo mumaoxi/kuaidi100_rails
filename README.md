@@ -1,8 +1,6 @@
 # Kuaidi100Rails
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/kuaidi100_rails`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+快递100抓取物流信息推送接口
 
 ## Installation
 
@@ -22,8 +20,12 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
-
+###抓取物流信息
+```ruby
+Kuaidi100Rails.POLL_CALLBACK_URL='http://yourserverurl/kuaidis/callback'
+Kuaidi100Rails.POLL_KEY = 'yourpollkey'
+Kuaidi100Rails.subscribe('yuantong', '7001360xxxx', '北京市', '江苏省镇江市丹阳市',nil,'152xxxxyyyy','company name','product name')
+```
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.

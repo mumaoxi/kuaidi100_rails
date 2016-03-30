@@ -68,7 +68,10 @@ module Kuaidi100Rails
   #+from+ start from address
   #+to+ destination address
   #+salt+ random signature string
-  def subscribe(com, nu, from, to, salt=nil)
+  #+mobiletelephone+ user phone
+  #+seller+ seller's name
+  #+commodity+ product's name
+  def subscribe(com, nu, from, to, salt=nil, mobiletelephone=nil, seller=nil, commodity=nil)
     begin
       body = {
           company: com,
@@ -79,7 +82,10 @@ module Kuaidi100Rails
           parameters: {
               callbackurl: Kuaidi100Rails.POLL_CALLBACK_URL,
               salt: salt,
-              resultv2: '1'
+              resultv2: '1',
+              mobiletelephone: mobiletelephone,
+              seller: seller,
+              commodity: commodity
           }
       }
       p body

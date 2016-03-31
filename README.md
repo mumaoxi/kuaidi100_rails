@@ -3,7 +3,7 @@
 快递100抓取物流信息推送接口
 
 ## Status
-SDK 已经发布到 RubyGems.
+代码 已经打包发布到 RubyGems.
 
 [![image](https://ruby-china-files.b0.upaiyun.com/photo/5982eaaa64f467d9dbda03ad4f40ea27.png)](https://rubygems.org/gems/kuaidi100_rails)
 
